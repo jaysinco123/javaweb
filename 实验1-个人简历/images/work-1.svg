@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="480" height="300" role="img" aria-label="响应式网页设计示意图">
+    <defs>
+        <linearGradient id="w1bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e9f7f4" />
+            <stop offset="100%" stop-color="#cfeae4" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="480" height="300" fill="url(#w1bg)" />
+
+    <!-- 浏览器窗口 -->
+    <rect x="60" y="52" width="360" height="220" rx="14" fill="#ffffff" />
+    <rect x="60" y="52" width="360" height="30" rx="14" fill="#eaf3f1" />
+    <rect x="60" y="70" width="360" height="12" fill="#eaf3f1" />
+    <circle cx="80" cy="67" r="5" fill="#f87171" />
+    <circle cx="96" cy="67" r="5" fill="#fbbf24" />
+    <circle cx="112" cy="67" r="5" fill="#34d399" />
+    <rect x="132" y="61" width="180" height="12" rx="6" fill="#ffffff" />
+
+    <!-- 窗口内的导航条 -->
+    <rect x="76" y="94" width="92" height="12" rx="6" fill="#0f766e" />
+    <rect x="336" y="94" width="68" height="12" rx="6" fill="#cbd5e1" />
+
+    <!-- 文字占位 -->
+    <rect x="76" y="124" width="152" height="10" rx="5" fill="#94a3b8" />
+    <rect x="76" y="144" width="220" height="8" rx="4" fill="#cbd5e1" />
+    <rect x="76" y="162" width="184" height="8" rx="4" fill="#cbd5e1" />
+
+    <!-- 三列卡片：对应 PC 端的多列布局 -->
+    <rect x="76" y="188" width="101" height="70" rx="10" fill="#e9f7f4" stroke="#0f766e" stroke-opacity="0.3" />
+    <rect x="189" y="188" width="101" height="70" rx="10" fill="#e9f7f4" stroke="#0f766e" stroke-opacity="0.3" />
+    <rect x="302" y="188" width="101" height="70" rx="10" fill="#e9f7f4" stroke="#0f766e" stroke-opacity="0.3" />
+    <circle cx="96" cy="208" r="8" fill="#5ccbb8" />
+    <circle cx="209" cy="208" r="8" fill="#5ccbb8" />
+    <circle cx="322" cy="208" r="8" fill="#5ccbb8" />
+    <rect x="90" y="226" width="72" height="7" rx="3.5" fill="#94a3b8" />
+    <rect x="203" y="226" width="72" height="7" rx="3.5" fill="#94a3b8" />
+    <rect x="316" y="226" width="72" height="7" rx="3.5" fill="#94a3b8" />
+    <rect x="90" y="240" width="52" height="6" rx="3" fill="#cbd5e1" />
+    <rect x="203" y="240" width="52" height="6" rx="3" fill="#cbd5e1" />
+    <rect x="316" y="240" width="52" height="6" rx="3" fill="#cbd5e1" />
+</svg>

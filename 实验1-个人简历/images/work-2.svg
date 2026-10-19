@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="480" height="300" role="img" aria-label="JavaWeb 代码编辑器示意图">
+    <defs>
+        <linearGradient id="w2bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e9f7f4" />
+            <stop offset="100%" stop-color="#cfeae4" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="480" height="300" fill="url(#w2bg)" />
+
+    <!-- 编辑器窗口 -->
+    <rect x="60" y="52" width="360" height="220" rx="14" fill="#ffffff" />
+    <rect x="60" y="52" width="360" height="30" rx="14" fill="#eaf3f1" />
+    <rect x="60" y="70" width="360" height="12" fill="#eaf3f1" />
+    <circle cx="80" cy="67" r="5" fill="#f87171" />
+    <circle cx="96" cy="67" r="5" fill="#fbbf24" />
+    <circle cx="112" cy="67" r="5" fill="#34d399" />
+
+    <!-- 左侧文件列表 -->
+    <rect x="60" y="82" width="76" height="190" fill="#f4f8f7" />
+    <rect x="74" y="102" width="48" height="8" rx="4" fill="#0f766e" />
+    <rect x="74" y="122" width="38" height="8" rx="4" fill="#cbd5e1" />
+    <rect x="74" y="142" width="52" height="8" rx="4" fill="#cbd5e1" />
+    <rect x="74" y="162" width="42" height="8" rx="4" fill="#cbd5e1" />
+
+    <!-- 代码行：不同颜色与宽度模拟代码缩进结构 -->
+    <rect x="152" y="102" width="106" height="8" rx="4" fill="#0f766e" />
+    <rect x="166" y="120" width="140" height="8" rx="4" fill="#94a3b8" />
+    <rect x="166" y="138" width="96" height="8" rx="4" fill="#f59e0b" />
+    <rect x="180" y="156" width="124" height="8" rx="4" fill="#5ccbb8" />
+    <rect x="180" y="174" width="72" height="8" rx="4" fill="#94a3b8" />
+    <rect x="166" y="192" width="132" height="8" rx="4" fill="#5ccbb8" />
+    <rect x="152" y="210" width="88" height="8" rx="4" fill="#0f766e" />
+    <rect x="152" y="228" width="64" height="8" rx="4" fill="#cbd5e1" />
+
+    <!-- 右侧滚动条 -->
+    <rect x="404" y="94" width="6" height="40" rx="3" fill="#cbd5e1" />
+    <rect x="404" y="142" width="6" height="90" rx="3" fill="#e2e8f0" />
+</svg>

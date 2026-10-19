@@ -1,0 +1,8 @@
+﻿~$*.docx
+~$*.xlsx
+*.zip
+.idea/
+*.iml
+target/
+out/
+node_modules/

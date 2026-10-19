@@ -1,0 +1,523 @@
+/* ============================================================
+   个人简历 · 外部样式表 style.css
+   《Web 应用开发》实验一：HTML 与 CSS 排版布局
+   文件结构：
+     1. 全局重置与变量（防爆框、盒子模型规范）
+     2. PC 端布局（宽度 > 768px）：全部使用 Flex 弹性布局
+     3. 移动端适配（宽度 ≤ 768px）：媒体查询，写在文件最底部
+   ============================================================ */
+
+/* ---------- 1.1 颜色与尺寸变量：想换主题色，只改这里 ---------- */
+:root {
+    --color-primary: #0f766e;
+    /* 主题色：墨绿 */
+    --color-primary-dark: #115e59;
+    /* 主题深色：hover 用 */
+    --color-accent: #f59e0b;
+    /* 点缀色：琥珀黄 */
+    --color-text: #1f2937;
+    /* 主文字色 */
+    --color-text-light: #6b7280;
+    /* 次要文字色 */
+    --color-bg: #f5f7f8;
+    /* 页面底色 */
+    --color-card: #ffffff;
+    /* 卡片底色 */
+    --color-border: #e5e7eb;
+    /* 描边色 */
+    --radius: 16px;
+    /* 卡片圆角 */
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    /* 卡片阴影 */
+    --content-width: 1100px;
+    /* 内容区最大宽度 */
+}
+
+/* ---------- 1.2 全局重置：解决内外边距与“盒子被撑大”的问题 ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    /* 关键：让 width 包含 padding 和 border，这是消灭横向滚动条的核心 */
+    box-sizing: border-box;
+}
+
+/* 点击导航锚点时平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 响应式图片处理：防止图片撑破容器 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* 去掉行内元素底部的默认空隙 */
+}
+
+/* 避免响应式折行后文字贴在一起 */
+body {
+    line-height: 1.6;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+/* 列表去掉默认小圆点：这里的 ul 用来当布局容器，不需要项目符号 */
+ul {
+    list-style: none;
+}
+
+/* 去掉链接下划线，颜色跟随父元素 */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ---------- 1.3 通用版心：宽度用百分比 + 最大宽度限制 ----------
+   宽度 92%，再用 max-width 限制大屏上限，因此永远不会出现横向滚动条 */
+.site-header,
+main,
+.site-footer {
+    width: 92%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+/* 二级标题：左侧加一条色条，突出层级 */
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    padding-left: 14px;
+    border-left: 5px solid var(--color-primary);
+}
+
+/* 章节说明文字 */
+.section-desc {
+    margin-top: 10px;
+    color: var(--color-text-light);
+}
+
+/* 通用按钮 */
+.btn {
+    display: inline-block;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    /* 表单控件不会自动继承 body 字体，必须显式继承 */
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   2. PC 端布局（宽度 > 768px）
+   ============================================================ */
+
+/* ---------- 2.1 头部：Logo 与菜单两端对齐 ---------- */
+.site-header {
+    position: sticky;
+    /* 向下滚动时导航栏吸附在页面顶部 */
+    top: 16px;
+    z-index: 10;
+    display: flex;
+    /* 开启弹性布局 */
+    justify-content: space-between;
+    /* 主轴两端对齐：Logo 靠左、菜单靠右 */
+    align-items: center;
+    /* 交叉轴居中：Logo 与菜单垂直居中对齐 */
+    gap: 16px;
+    margin-top: 16px;
+    padding: 14px 28px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    /* 胶囊形圆角 */
+    box-shadow: var(--shadow);
+}
+
+/* Logo 内部：图标与文字也横向排列 */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    /* 空间不足时不允许被压缩 */
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.logo-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 让字母在圆块里水平、垂直都居中 */
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-image: linear-gradient(135deg, var(--color-primary), #14b8a6);
+    color: #ffffff;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+}
+
+/* 导航菜单：一组横向排列的链接 */
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    /* 空间不足时允许换行，避免撑破容器 */
+}
+
+.nav-list a {
+    display: block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    white-space: nowrap;
+    /* 菜单文字始终占一行，不折行 */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* 鼠标移入菜单时高亮（桌面端的增强效果，不影响小屏显示） */
+.nav-list a:hover {
+    background-color: #e6f4f1;
+    color: var(--color-primary-dark);
+}
+
+/* ---------- 2.2 自我介绍：文字与头像左右分布 ---------- */
+#about {
+    display: flex;
+    /* 文字与头像横向排列 */
+    align-items: center;
+    /* 交叉轴居中，让文字与头像在垂直方向对齐 */
+    gap: 48px;
+    padding-top: 64px;
+}
+
+/* 关键：让文字占据头像之外的剩余空间，这是实验指导书里的思考题答案 */
+.about-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* 文字块内部左对齐 */
+    gap: 16px;
+}
+
+.about-text h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+}
+
+.about-subtitle {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.about-text p {
+    color: var(--color-text-light);
+}
+
+/* 头像：定宽定高，圆形裁切 */
+.avatar {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    /* 关键：宽度不够时头像不被压缩变形 */
+    border-radius: 50%;
+    object-fit: cover;
+    /* 图片按比例裁剪填满，不拉伸变形 */
+    border: 6px solid var(--color-card);
+    background-color: #e6f4f1;
+    box-shadow: var(--shadow);
+}
+
+/* ---------- 2.3 专业技能与教育经历 ---------- */
+#skills {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* 一行放不下就自动换行 */
+    gap: 12px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.skill-list li {
+    padding: 8px 18px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: 0.875rem;
+}
+
+/* 教育经历：纵向排列，左侧一条时间线 */
+.edu-list {
+    display: flex;
+    flex-direction: column;
+    /* 主轴改为纵向：一条一条上下排列 */
+    gap: 14px;
+    padding-left: 20px;
+    border-left: 2px solid var(--color-border);
+}
+
+.edu-list li {
+    display: flex;
+    align-items: baseline;
+    /* 按文字基线对齐，时间与内容更整齐 */
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.edu-year {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+}
+
+/* ---------- 2.4 作品列表：卡片多列并行 ---------- */
+#projects {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.work-list {
+    display: flex;
+    /* 卡片横向排列 */
+    gap: 20px;
+    /* 卡片之间的间距 */
+    margin-top: 24px;
+}
+
+.work-item {
+    flex: 1;
+    /* 平分宽度，实现多列等宽（等高由 align-items 默认值 stretch 保证） */
+    display: flex;
+    flex-direction: column;
+    /* 卡片内部也纵向排列，方便把链接压到底部 */
+    gap: 12px;
+    padding: 18px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* 桌面端鼠标移入卡片时轻微上浮 */
+.work-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+}
+
+.work-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.work-item h3 {
+    font-size: 1.0625rem;
+}
+
+.work-item p {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+/* 标签行：选择器权重高于 .work-item p，因此能覆盖上面的字号与颜色 */
+.work-item .work-tags {
+    font-size: 0.8125rem;
+    color: var(--color-primary);
+}
+
+/* 关键：margin-top: auto 吃掉剩余空间，把链接统一压到卡片底部，实现多列等高对齐 */
+.work-link {
+    margin-top: auto;
+    align-self: flex-start;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.work-link:hover {
+    color: var(--color-accent);
+}
+
+/* ---------- 2.5 留言表单：整体居中 ---------- */
+#contact {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 640px;
+    /* 表单最宽 640px，配合 margin: 0 auto 实现水平居中 */
+    margin: 24px auto 0;
+    display: flex;
+    flex-direction: column;
+    /* 表单项上下排列 */
+    gap: 18px;
+    padding: 28px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* 每一个表单项：标签在上、控件在下 */
+.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-item label {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.form-item input,
+.form-item textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    background-color: #fafbfc;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+}
+
+/* 只允许上下拖动调整多行文本框的高度，避免左右拖动破坏布局 */
+.form-item textarea {
+    resize: vertical;
+}
+
+/* 获得焦点时高亮，提示用户当前正在输入哪一项 */
+.form-item input:focus,
+.form-item textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: #ffffff;
+}
+
+/* 提交按钮在表单中单独居中 */
+.btn-submit {
+    align-self: center;
+    padding: 12px 40px;
+}
+
+/* ---------- 2.6 页脚 ---------- */
+.site-footer {
+    padding: 28px 0 40px;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    border-top: 1px solid var(--color-border);
+}
+
+/* ============================================================
+   3. 移动端适配（宽度 ≤ 768px）
+   注意：媒体查询必须写在 CSS 文件的最底部！
+   CSS 是“后来者覆盖”，若写在中间，后面的规则会把移动端样式又覆盖掉，
+   就会出现“媒体查询不生效”的假象。
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* 3.1 导航栏：改为垂直方向排列，Logo 与菜单上下居中 */
+    .site-header {
+        flex-direction: column;
+        /* 主轴改为纵向 → Logo 在上、菜单在下 */
+        justify-content: center;
+        /* 纵向排列时，主轴居中即“上下居中” */
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: 22px;
+        position: static;
+        /* 小屏不再吸顶，避免遮挡正文 */
+    }
+
+    .logo {
+        font-size: 0.9375rem;
+    }
+
+    /* 菜单在水平方向居中，空间不足时自动换行 */
+    .nav-list {
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .nav-list a {
+        padding: 6px 12px;
+        font-size: 0.875rem;
+    }
+
+    /* 3.2 自我介绍：文字与头像改为上下排列 */
+    #about {
+        flex-direction: column;
+        /* 主轴改为纵向 → 上下排列 */
+        text-align: center;
+        gap: 28px;
+        padding-top: 36px;
+    }
+
+    .about-text {
+        flex: none;
+        /* 纵向排列后不再需要抢占剩余空间，重置为不伸缩 */
+        align-items: center;
+        /* 文字块内部居中 */
+    }
+
+    .about-text h1 {
+        font-size: 1.5rem;
+        /* 小屏适当缩小标题字号 */
+    }
+
+    .avatar {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* 3.3 作品卡片：由多列改为单列全屏 */
+    .work-list {
+        flex-direction: column;
+        /* 主轴改为纵向 → 一行一张卡片 */
+    }
+
+    .work-item {
+        width: 100%;
+    }
+
+    /* 3.4 其余细节：收紧间距、缩小字号，整体自适应手机屏幕 */
+    #skills,
+    #projects,
+    #contact {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+}
